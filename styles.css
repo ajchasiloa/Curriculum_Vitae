@@ -1,0 +1,272 @@
+/* Estilos principales para la aplicación */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #00A9FF, #FF4F79);
+    min-height: 150vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    overflow: auto;
+    font-family: 'Poppins', sans-serif;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Fondo con patrón de textura */
+.app-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://www.transparenttextures.com/patterns/cartographer.png');
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Efecto de textura al fondo */
+.decorative-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.decorative-shapes::before, .decorative-shapes::after {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    animation: floatShapes 6s infinite alternate ease-in-out;
+}
+
+.decorative-shapes::before {
+    top: 10%;
+    left: -50px;
+}
+
+.decorative-shapes::after {
+    bottom: 10%;
+    right: -50px;
+}
+
+@keyframes floatShapes {
+    from { transform: translateY(0px) rotate(0deg); }
+    to { transform: translateY(20px) rotate(15deg); }
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(58, 77, 122, 0.9);
+    padding: 15px 0;
+    position: relative;
+    z-index: 1;
+    transition: background 0.3s;
+}
+
+.navbar h1 {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 15px #ffffff; }
+    to { text-shadow: 0 0 25px #A4FF00; }
+}
+
+/* Contenedor de tarjetas */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+    padding: 30px;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    z-index: 2;
+}
+
+.contact-card, .presentation-card {
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #1c1c1c;
+}
+
+/* Gradiente animado alrededor de las tarjetas */
+.contact-card::before, .presentation-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #4B9CD3, #1E3A8A, #8B79B7);
+    background-size: 400% 400%;
+    border-radius: 15px;
+    z-index: -1;
+    animation: lightPulse 3s linear infinite;
+}
+
+@keyframes lightPulse {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+.contact-card:hover, .presentation-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.9);
+}
+
+.contact-card img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #A4FF00;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Encabezados con efectos llamativos */
+.contact-card h2, .contact-card h3 {
+    font-size: 1.8rem;
+    color: #A4FF00;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.contact-card h2:hover, .contact-card h3:hover {
+    color: #ffffff;
+    text-shadow: 0px 0px 20px #A4FF00;
+}
+
+/* Pie de página */
+footer {
+    background-color: rgba(58, 77, 122, 0.9);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    border-radius: 0 0 15px 15px;
+    font-size: 1.2rem;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Media Queries para Responsividad */
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+    .navbar h1 {
+        font-size: 1.5rem;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr; /* Solo una columna en móviles */
+        padding: 15px;
+    }
+
+    .contact-card, .presentation-card {
+        padding: 20px;
+    }
+
+    .contact-card img {
+        width: 120px;
+        height: 120px;
+    }
+
+    footer {
+        font-size: 1rem;
+        padding: 15px;
+    }
+}
+
+/* Pantallas medianas (tabletas) */
+@media (max-width: 900px) {
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas en tabletas */
+        padding: 20px;
+    }
+
+    .contact-card, .presentation-card {
+        padding: 25px;
+    }
+
+    .contact-card img {
+        width: 130px;
+        height: 130px;
+    }
+
+    footer {
+        font-size: 1.1rem;
+        padding: 18px;
+    }
+}
+
+/* Pantallas grandes (desktops) */
+@media (min-width: 1200px) {
+    .navbar h1 {
+        font-size: 3rem;
+    }
+
+    .cards-container {
+        grid-template-columns: repeat(3, 1fr); /* Tres columnas en pantallas grandes */
+        padding: 40px;
+    }
+
+    .contact-card, .presentation-card {
+        padding: 35px;
+    }
+
+    .contact-card img {
+        width: 150px;
+        height: 150px;
+    }
+
+    footer {
+        font-size: 1.2rem;
+        padding: 25px;
+    }
+}
